@@ -70,7 +70,7 @@ public class FacebookTest {
         }
         List<WebElement> names= driver.findElements(By.cssSelector(".sc-124al1g-4.eeXMBo.sc-124al1g-4.eeXMBo"));
         //List<String> namesStr = names.stream().map(x->x.getText()).toList();
-        element.sendKeys("Selenium");
+        element.sendKeys("Selenium"); //принимает в качестве аргумента строку текста и вводит ее в указанное текстовое поле или элемент формы
         element.submit(); //это Enter
     }
 

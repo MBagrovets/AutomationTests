@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.List;
 
 public class CompareTheProducts {
 
@@ -32,8 +33,12 @@ public class CompareTheProducts {
         WebElement addButton = driver.findElement(By.xpath("//div[@class = 'sc-124al1g-0 jCsgpZ']"));
         addButton.click();
 
-        WebElement itemInCatalog = driver.findElement(By.xpath("//p[@class = 'sc-124al1g-4 eeXMBo'][contains(text(),'Cropped Stay Groovy off white')]"));
-        WebElement itemInBasket = driver.findElement(By.xpath("//p[@class = 'sc-11uohgb-2 elbkhN'][contains(text(),'Cropped Stay Groovy off white')]"));
+//        WebElement itemInCatalog = driver.findElement(By.xpath("//p[@class = 'sc-124al1g-4 eeXMBo'][contains(text(),'Cropped Stay Groovy off white')]"));
+//        WebElement itemInBasket = driver.findElement(By.xpath("//p[@class = 'sc-11uohgb-2 elbkhN'][contains(text(),'Cropped Stay Groovy off white')]"));
+
+        driver.findElements(By.xpath("//p[@class = 'sc-124al1g-4 eeXMBo']"));
+        List<WebElement> webElementList = driver.findElements(By.xpath("//p[@class = 'sc-124al1g-4 eeXMBo'][contains(text(),'Cropped Stay Groovy off white')]"));
+        List<String> itemsInCatalog = itemItCatalog.stream().map(x->x.getText).toList();
 
 
     }
