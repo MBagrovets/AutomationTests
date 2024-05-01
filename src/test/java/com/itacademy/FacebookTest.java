@@ -20,7 +20,7 @@ public class FacebookTest {
 
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver-win64.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -69,7 +69,7 @@ public class FacebookTest {
             element1.click();
         }
         List<WebElement> names= driver.findElements(By.cssSelector(".sc-124al1g-4.eeXMBo.sc-124al1g-4.eeXMBo"));
-        //List<String> namesStr = names.stream().map(x->x.getText()).toList();
+        List<String> namesStr = names.stream().map(x->x.getText()).toList();
         element.sendKeys("Selenium"); //принимает в качестве аргумента строку текста и вводит ее в указанное текстовое поле или элемент формы
         element.submit(); //это Enter
     }
