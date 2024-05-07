@@ -1,5 +1,6 @@
 package com.itacademy;
 
+import com.itacademy.pages.CartPage;
 import com.itacademy.pages.CatalogPage;
 import com.itacademy.utils.ScreenshotUtils;
 import org.apache.commons.io.FileUtils;
@@ -19,17 +20,19 @@ public class CompareProducts extends BaseTest {
 //              3. Сравните название продукта в корзине с названием продукта из первого пункта
 
     @Test
-    public void test1() throws IOException {
+    public void test1() throws IOException, InterruptedException {
         CatalogPage catalogPage = new CatalogPage(driver);
         catalogPage.openUrl();
+        CartPage cartPage = new CartPage(driver);
 
-        WebElement itemInCatalog = driver.findElement(By.xpath("//p[@class = 'sc-124al1g-4 eeXMBo']"));
+        String itemInCatalogText = catalogPage.getItemInCatalog().getText();
         catalogPage.clickFirstElementBtn();
-        WebElement itemInBasket = driver.findElement(By.xpath("//p[@class = 'sc-11uohgb-2 elbkhN']"));
+        String itemInBasketText = cartPage.getItemInBacket().getText();
+        Thread.sleep(4000);
 
-        Assert.assertEquals(itemInCatalog.getText(),itemInBasket.getText());
+        Assert.assertEquals(itemInBasketText,itemInCatalogText);
 
-        ScreenshotUtils.takeScreenshot(driver);
+        //ScreenshotUtils.takeScreenshot(driver);
     }
 
 //              Тест 2.
@@ -40,22 +43,19 @@ public class CompareProducts extends BaseTest {
     public void test2() throws InterruptedException {
         CatalogPage catalogPage = new CatalogPage(driver);
         catalogPage.openUrl();
+        CartPage cartPage = new CartPage(driver);
 
-        List<WebElement> list1 = driver.findElements(By.xpath("//p[@class = 'sc-124al1g-4 eeXMBo']"));
-        List <WebElement> add = driver.findElements(By.xpath("//*[text()='Add to cart']"));
-
-        List<String> a = list1.stream().map(x->x.getText()).toList();
-        for(WebElement element:add) {
+        catalogPage.getNameOfElement();
+        catalogPage.getAddToCartBtn();
+        List<String> elementsOnPage = catalogPage.getNameOfElement().stream().map(x->x.getText()).toList();
+        for(WebElement element: catalogPage.getAddToCartBtn()) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element); //позволяет кликнуть по элементу, даже если его не видно
         }
+        Thread.sleep(3000); //чтобы успеть посмотреть
+        cartPage.getItemsInCart();
+        List<String> elementsInCart = cartPage.getItemsInCart().stream().map(x->x.getText()).toList();
 
-        Thread.sleep(5000); //чтобы успеть посмотреть
-
-        List<WebElement> list2 = driver.findElements(By.xpath("//*[@class = 'sc-11uohgb-2 elbkhN']"));
-
-        List<String> b = list2.stream().map(x->x.getText()).toList();
-
-        Assert.assertEquals(a,b);
+        Assert.assertEquals(elementsOnPage,elementsInCart);
     }
 
 //              Тест 3
@@ -68,13 +68,9 @@ public class CompareProducts extends BaseTest {
         CatalogPage catalogPage = new CatalogPage(driver);
         catalogPage.openUrl();
 
-        List<WebElement> listOfProducts = driver.findElements(By.xpath("//*[@class = 'sc-124al1g-4 eeXMBo']"));
-        List<String> allProductsList = listOfProducts.stream().map(x->x.getText()).toList();
-
+        List<String> allProductsList = catalogPage.listOfProducts.stream().map(x->x.getText()).toList();
         catalogPage.clickSizeBtn();
-
-        List<WebElement> xsList = driver.findElements((By.xpath("//span[@class = 'checkmark']")));
-        List<String> xsProducts = xsList.stream().map(x->x.getText()).toList();
+        List<String> xsProducts = catalogPage.xsList.stream().map(x->x.getText()).toList();
 
         if (xsProducts.size() < allProductsList.size()) {
             System.out.println("Размер списка текущих продуктов меньше размера списка всех продуктов");
@@ -94,63 +90,15 @@ public class CompareProducts extends BaseTest {
         CatalogPage catalogPage = new CatalogPage(driver);
         catalogPage.openUrl();
 
-        List<WebElement> listOfProducts = driver.findElements(By.xpath("//*[@class = 'sc-ebmerl-4 iliWeY']/p"));
-        List<String> allProductsList = listOfProducts.stream().map(x->x.getText()).toList();
-
+        List<String> allProductsList = catalogPage.listOfProductsNaming.stream().map(x->x.getText()).toList();
         catalogPage.clickSizeBtn();
-        Thread.sleep(5000);
-
-        List<WebElement> sizeListOfProducts = driver.findElements(By.xpath("//*[@class = 'sc-ebmerl-4 iliWeY']/p"));
-        List<String> sizeAllProductsList = sizeListOfProducts.stream().map(x->x.getText()).toList();
+        Thread.sleep(3000);
+        List<String> sizeAllProductsList = catalogPage.sizeListOfProductsNaming.stream().map(x->x.getText()).toList();
 
         if (allProductsList.equals(sizeAllProductsList)) {
             System.out.println("Списки продуктов совпадают");
         } else {
             System.out.println("Списки продуктов не совпадают");
         }
-
-
-
-
-        /*      ВТОРОЙ ВАРИАНТ РЕШЕНИЯ (через массив)!!!
-
-        WebElement allProducts = driver.findElement(By.xpath("//*[@class = 'sc-ebmerl-4 iliWeY']/p"));
-        String countText = allProducts.getAttribute("innerText");
-
-        String[] parts = countText.split(" ");
-        int productCount = 0;
-
-        for(String part:parts){
-            if(part.matches("\\d+")){
-                productCount = Integer.parseInt(part);
-                break;
-            }
-        }
-
-        WebElement size = driver.findElement(By.xpath("//span[@class = 'checkmark']"));
-        size.click();
-
-        Thread.sleep(5000);
-
-        WebElement sizeProducts = driver.findElement(By.xpath("//*[@class = 'sc-ebmerl-4 iliWeY']/p"));
-        String sizeCountText = allProducts.getAttribute("innerText");
-
-        String[] parts2 = countText.split(" ");
-        int productCount2 = 0;
-
-        for(String part:parts){
-            if(part.matches("\\d+")){
-                productCount2 = Integer.parseInt(part);
-                break;
-            }
-        }
-
-        if (productCount2 > productCount) {
-            System.out.println("Размер списка 2 больше размера списка 1");
-        } else if(productCount2 < productCount){
-            System.out.println("Размер списка 2 меньше размера списка 1");
-        } else{
-            System.out.println("Размер списка 2 равен размеру списка 1");
-        }*/
     }
 }
