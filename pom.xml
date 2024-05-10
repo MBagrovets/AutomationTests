@@ -62,6 +62,7 @@
           <artifactId>poi-ooxml</artifactId>
           <version>5.2.5</version>
       </dependency>
+
   </dependencies>
 
     <build>
@@ -69,9 +70,21 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
                 <configuration>
                     <source>21</source>
                     <target>21</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <suiteXmlFile>src/test/resources/${suite}.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
         </plugins>
