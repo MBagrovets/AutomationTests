@@ -8,9 +8,7 @@ import com.itacademy.utils.PropertyReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -19,7 +17,7 @@ public class BaseTest {
 
     protected WebDriver driver;
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp(){
 
 //        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver.exe");
@@ -36,7 +34,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @AfterTest
+    @AfterMethod
     public void closeSession(){
         driver.quit();
     }
