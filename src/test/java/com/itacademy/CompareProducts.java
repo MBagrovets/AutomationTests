@@ -2,15 +2,22 @@ package com.itacademy;
 
 import com.itacademy.pages.CartPage;
 import com.itacademy.pages.CatalogPage;
+import com.itacademy.pages.LinkedInPage;
 import com.itacademy.utils.ScreenshotUtils;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import static org.testng.Assert.assertThrows;
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class CompareProducts extends BaseTest {
 
@@ -31,6 +38,8 @@ public class CompareProducts extends BaseTest {
         Thread.sleep(4000);
 
         Assert.assertEquals(itemInBasketText,itemInCatalogText);
+//        assertTrue(element1.isDisplayed(),"Message"); разные виды ассертов
+//        assertEquals(1,3);
 
         //ScreenshotUtils.takeScreenshot(driver);
     }
@@ -100,5 +109,27 @@ public class CompareProducts extends BaseTest {
         } else {
             System.out.println("Списки продуктов не совпадают");
         }
+    }
+
+    @Test(dataProvider = "dataProvider")
+    public void test5(String email, String password, String errorMessage) throws Exception {
+        CatalogPage catalogPage = new CatalogPage(driver);
+        catalogPage.openUrl();
+        LinkedInPage linkedInPage = new LinkedInPage(driver);
+
+        catalogPage.clickFollowToLinkedinBtn();
+        Thread.sleep(5000);
+
+        linkedInPage.clickFirstSignInBtn();
+        Thread.sleep(3000);
+        linkedInPage.signInForm(email, password, errorMessage);
+    }
+    @DataProvider(name = "dataProvider")
+    public Object[][] getData () {
+        return new Object[][]{
+                {"Ivan@gmail.com", "123", "The password you provided must have at least 6 characters"},
+                {"", "123", "Please enter an email address or phone number"},
+                {"Ivan@gmail.com", "", "Please enter a password"},
+        };
     }
 }

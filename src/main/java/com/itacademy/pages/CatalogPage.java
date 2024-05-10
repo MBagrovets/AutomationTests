@@ -11,6 +11,15 @@ import java.util.List;
 
 public class CatalogPage extends BasePage {
 
+    public void openUrl(){
+        driver.get("https://react-shopping-cart-67954.firebaseapp.com/");
+    }
+
+    public CatalogPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver,this);  //this - это CatalogPage.class. Создает элементы по @FindBy
+    }
+
     @FindBy (xpath = "//*[@class = 'sc-124al1g-0 jCsgpZ']")
     private WebElement firstElementBtn;
 
@@ -60,13 +69,11 @@ public class CatalogPage extends BasePage {
     public List<WebElement> sizeListOfProductsNaming;
 
 
-    public void openUrl(){
-        driver.get("https://react-shopping-cart-67954.firebaseapp.com/");
-    }
+    @FindBy (xpath = "//*[contains (text(), 'follow me on Linkedin.')]")
+    private WebElement followToLinkedinBtn;
 
-    public CatalogPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver,this);  //this - это CatalogPage.class. Создает элементы по @FindBy
+    public void clickFollowToLinkedinBtn() {
+        followToLinkedinBtn.click();
     }
 
 }
