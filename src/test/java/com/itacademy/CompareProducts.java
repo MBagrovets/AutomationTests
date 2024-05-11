@@ -23,6 +23,8 @@ import static org.testng.AssertJUnit.assertTrue;
 
 public class CompareProducts extends BaseTest {
 
+    private static final Logger LOGGER = LogManager.getLogger(LoggerTest.class);
+
 //              Тест 1
 //              1. Найдите название первого продукта
 //              2. Добавьте в корзину первый продукт
@@ -40,6 +42,9 @@ public class CompareProducts extends BaseTest {
         Thread.sleep(4000);
 
         Assert.assertEquals(itemInBasketText,itemInCatalogText);
+
+        LOGGER.info("info");
+        LOGGER.error("error");
 //        assertTrue(element1.isDisplayed(),"Message"); разные виды ассертов
 //        assertEquals(1,3);
 
@@ -67,6 +72,9 @@ public class CompareProducts extends BaseTest {
         List<String> elementsInCart = cartPage.getItemsInCart().stream().map(x->x.getText()).toList();
 
         Assert.assertEquals(elementsOnPage,elementsInCart);
+        LOGGER.info("info");
+        LOGGER.warn("warning");
+        LOGGER.error("error");
     }
 
 //              Тест 3
@@ -88,6 +96,9 @@ public class CompareProducts extends BaseTest {
         } else {
             System.out.println("Размер списка текущих продуктов больше или равен размеру списка всех продуктов");
         }
+        LOGGER.info("info");
+        LOGGER.warn("debug");
+        LOGGER.error("error");
     }
 
 //              Тест 4
@@ -111,6 +122,10 @@ public class CompareProducts extends BaseTest {
         } else {
             System.out.println("Списки продуктов не совпадают");
         }
+        LOGGER.debug("debug");
+        LOGGER.info("info");
+        LOGGER.warn("warning");
+        LOGGER.error("error");
     }
 
     @Test(dataProvider = "dataProvider")                                                       //16 лекция
@@ -125,6 +140,11 @@ public class CompareProducts extends BaseTest {
         linkedInPage.clickFirstSignInBtn();
         Thread.sleep(3000);
         linkedInPage.signInForm(email, password, errorMessage);
+
+        LOGGER.debug("debug");
+        LOGGER.info("info");
+        LOGGER.warn("warning");
+        LOGGER.error("error");
     }
     @DataProvider(name = "dataProvider")
     public Object[][] getData () {

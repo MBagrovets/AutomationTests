@@ -22,6 +22,7 @@ public class TestListeners implements ITestListener {
         System.out.println("========================================");
         System.out.println("Test "+ result.getMethod().getMethodName()+" passed");
         System.out.println("========================================");
+        DriverManager.quitDriver();
     }
 
     @Override
@@ -32,10 +33,6 @@ public class TestListeners implements ITestListener {
         //с DriverManager можно делать скрины:
         ScreenshotUtils.takeScreenshot(DriverManager.getDriver()); // скриншоты в Listeners делаются немного по-другому
         System.out.println(DriverManager.getDriver().getPageSource()); // напечатает на выходе все дерево HTML
-    }
-
-    @Override
-    public void onFinish(ITestContext context) {
         DriverManager.quitDriver();
     }
 }

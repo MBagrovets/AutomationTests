@@ -47,5 +47,5 @@ public class DriverFactory {
             return new RemoteWebDriver(url, firefoxOptions);
         }
         return null;
-    }
+    } //в момент ремува метода, где создается ChromeDriver and FirefixDriver и добавлении метод где создаём RemoteWebDriver, происходит переключение с драйверов на селениум сервер
 }
