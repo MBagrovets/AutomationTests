@@ -1,5 +1,6 @@
 package com.itacademy.pages;
 
+import com.itacademy.utils.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,12 +11,11 @@ import static org.testng.AssertJUnit.assertEquals;
 public class LinkedInPage extends BasePage{
 
     public void openUrl(){
-        driver.get("https://react-shopping-cart-67954.firebaseapp.com/");
+        DriverManager.getDriver().get("https://react-shopping-cart-67954.firebaseapp.com/");
     }
 
-    public LinkedInPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver,this);  //this - это CatalogPage.class. Создает элементы по @FindBy
+    public LinkedInPage() {
+        PageFactory.initElements(DriverManager.getDriver(),this);  //this - это CatalogPage.class. Создает элементы по @FindBy
     }
 
     @FindBy(xpath = "//*[@class = 'sign-in-modal__outlet-btn cursor-pointer btn-md btn-primary'][@data-modal = 'public_profile_top-card_title-modal-id_sign-in-modal'][contains (text(), 'Sign in')]")

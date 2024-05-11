@@ -1,5 +1,6 @@
 package com.itacademy.pages;
 
+import com.itacademy.utils.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,9 +10,8 @@ import java.util.List;
 
 public class CartPage extends BasePage{
 
-    public CartPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver,this);  //this - это CatalogPage.class. Создает элементы по @FindBy
+    public CartPage() {
+        PageFactory.initElements(DriverManager.getDriver(),this);  //this - это CatalogPage.class. Создает элементы по @FindBy
     }
     @FindBy(xpath = "//p[@class = 'sc-11uohgb-2 elbkhN']")
     private WebElement itemInBasket;
@@ -26,4 +26,5 @@ public class CartPage extends BasePage{
     public List<WebElement> getItemsInCart(){
         return itemsInCart;
     }
+
 }

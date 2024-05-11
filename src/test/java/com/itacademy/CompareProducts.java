@@ -28,9 +28,9 @@ public class CompareProducts extends BaseTest {
 
     @Test
     public void test1() throws IOException, InterruptedException {
-        CatalogPage catalogPage = new CatalogPage(driver);
+        CatalogPage catalogPage = new CatalogPage();
         catalogPage.openUrl();
-        CartPage cartPage = new CartPage(driver);
+        CartPage cartPage = new CartPage();
 
         String itemInCatalogText = catalogPage.getItemInCatalog().getText();
         catalogPage.clickFirstElementBtn();
@@ -50,9 +50,9 @@ public class CompareProducts extends BaseTest {
 //              3. Сравните все названия продуктов в корзине с листом из первого пункта
     @Test
     public void test2() throws InterruptedException {
-        CatalogPage catalogPage = new CatalogPage(driver);
+        CatalogPage catalogPage = new CatalogPage();
         catalogPage.openUrl();
-        CartPage cartPage = new CartPage(driver);
+        CartPage cartPage = new CartPage();
 
         catalogPage.getNameOfElement();
         catalogPage.getAddToCartBtn();
@@ -74,7 +74,7 @@ public class CompareProducts extends BaseTest {
 
     @Test
     public void test3(){
-        CatalogPage catalogPage = new CatalogPage(driver);
+        CatalogPage catalogPage = new CatalogPage();
         catalogPage.openUrl();
 
         List<String> allProductsList = catalogPage.listOfProducts.stream().map(x->x.getText()).toList();
@@ -96,7 +96,7 @@ public class CompareProducts extends BaseTest {
     @Test
     public void test4() throws InterruptedException{
 
-        CatalogPage catalogPage = new CatalogPage(driver);
+        CatalogPage catalogPage = new CatalogPage();
         catalogPage.openUrl();
 
         List<String> allProductsList = catalogPage.listOfProductsNaming.stream().map(x->x.getText()).toList();
@@ -111,11 +111,11 @@ public class CompareProducts extends BaseTest {
         }
     }
 
-    @Test(dataProvider = "dataProvider")
+    @Test(dataProvider = "dataProvider")                                                       //16 лекция
     public void test5(String email, String password, String errorMessage) throws Exception {
-        CatalogPage catalogPage = new CatalogPage(driver);
+        CatalogPage catalogPage = new CatalogPage();
         catalogPage.openUrl();
-        LinkedInPage linkedInPage = new LinkedInPage(driver);
+        LinkedInPage linkedInPage = new LinkedInPage();
 
         catalogPage.clickFollowToLinkedinBtn();
         Thread.sleep(5000);

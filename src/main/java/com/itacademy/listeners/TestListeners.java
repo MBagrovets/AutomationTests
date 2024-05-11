@@ -1,7 +1,11 @@
 package com.itacademy.listeners;
 
+import com.itacademy.utils.DriverManager;
+import com.itacademy.utils.ScreenshotUtils;
+import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import org.openqa.selenium.WebDriver;
 
 import java.sql.SQLOutput;
 
@@ -25,7 +29,13 @@ public class TestListeners implements ITestListener {
         System.out.println("========================================");
         System.out.println("Test "+ result.getMethod().getMethodName()+" failed");
         System.out.println("========================================");
-        //ScreenshotUtils.takeScreenshot(driver); - скриншоты в Listeners делаются немного по-другому
-        //System.out.println(driver.getPageSource()); - напечатает на выходе все дерево HTML
+        //с DriverManager можно делать скрины:
+        ScreenshotUtils.takeScreenshot(DriverManager.getDriver()); // скриншоты в Listeners делаются немного по-другому
+        System.out.println(DriverManager.getDriver().getPageSource()); // напечатает на выходе все дерево HTML
+    }
+
+    @Override
+    public void onFinish(ITestContext context) {
+        DriverManager.quitDriver();
     }
 }
