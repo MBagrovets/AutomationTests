@@ -1,0 +1,2 @@
+2024-05-11 16:12:35,419 INFO c.i.LoggerTest [main] info
+2024-05-11 16:12:35,423 ERROR c.i.LoggerTest [main] error

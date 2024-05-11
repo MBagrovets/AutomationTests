@@ -5,6 +5,8 @@ import com.itacademy.pages.CatalogPage;
 import com.itacademy.pages.LinkedInPage;
 import com.itacademy.utils.ScreenshotUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
