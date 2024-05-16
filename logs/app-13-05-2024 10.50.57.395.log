@@ -1,0 +1,14 @@
+2024-05-13 10:50:57,849 DEBUG c.i.u.DriverFactory [TestNG-test-exampletest1-2] Browser is chrome
+2024-05-13 10:51:05,063 DEBUG c.i.u.DriverFactory [TestNG-test-exampletest1-1] Browser is chrome
+2024-05-13 10:51:15,491 INFO c.i.CompareProducts [TestNG-test-exampletest1-1] info
+2024-05-13 10:51:15,492 ERROR c.i.CompareProducts [TestNG-test-exampletest1-1] error
+2024-05-13 10:51:15,965 DEBUG c.i.u.DriverFactory [TestNG-test-exampletest2-1] Browser is chrome
+2024-05-13 10:51:18,051 DEBUG c.i.u.DriverFactory [TestNG-test-exampletest2-2] Browser is chrome
+2024-05-13 10:51:25,858 INFO c.i.CompareProducts [TestNG-test-exampletest2-1] info
+2024-05-13 10:51:25,859 WARN c.i.CompareProducts [TestNG-test-exampletest2-1] debug
+2024-05-13 10:51:25,860 ERROR c.i.CompareProducts [TestNG-test-exampletest2-1] error
+2024-05-13 10:51:26,692 DEBUG c.i.CompareProducts [TestNG-test-exampletest2-2] debug
+2024-05-13 10:51:26,692 INFO c.i.CompareProducts [TestNG-test-exampletest2-2] info
+2024-05-13 10:51:26,693 WARN c.i.CompareProducts [TestNG-test-exampletest2-2] warning
+2024-05-13 10:51:26,694 ERROR c.i.CompareProducts [TestNG-test-exampletest2-2] error
+2024-05-13 10:51:27,025 DEBUG c.i.u.DriverFactory [TestNG-test-exampletest3-1] Browser is chrome

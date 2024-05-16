@@ -1,0 +1,5 @@
+2024-05-13 10:49:19,914 DEBUG c.i.u.DriverFactory [TestNG-test-exampletest1-1] Browser is chrome
+2024-05-13 10:49:20,560 DEBUG c.i.u.DriverFactory [TestNG-test-exampletest1-2] Browser is chrome
+2024-05-13 10:49:20,599 DEBUG c.i.u.DriverFactory [TestNG-test-exampletest2-1] Browser is chrome
+2024-05-13 10:49:20,619 DEBUG c.i.u.DriverFactory [TestNG-test-exampletest2-2] Browser is chrome
+2024-05-13 10:49:20,647 DEBUG c.i.u.DriverFactory [TestNG-test-exampletest3-1] Browser is chrome

@@ -67,7 +67,7 @@ public class CompareProducts extends BaseTest {
         for(WebElement element: catalogPage.getAddToCartBtn()) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element); //позволяет кликнуть по элементу, даже если его не видно
         }
-        Thread.sleep(3000); //чтобы успеть посмотреть
+        Thread.sleep(5000); //чтобы успеть посмотреть
         cartPage.getItemsInCart();
         List<String> elementsInCart = cartPage.getItemsInCart().stream().map(x->x.getText()).toList();
 
