@@ -61,7 +61,7 @@ public class CatalogPage extends BasePage {
     @FindBy (xpath = "//*[@class = 'sc-124al1g-4 eeXMBo']")
             public List<WebElement>listOfProducts;
 
-    @FindBy (xpath = "//span[@class = 'checkmark']")
+    @FindBy (xpath = "//*[@class = 'sc-124al1g-4 eeXMBo']")
     public List<WebElement> xsList;
 
     @FindBy (xpath = "//*[@class = 'sc-ebmerl-4 iliWeY']/p")

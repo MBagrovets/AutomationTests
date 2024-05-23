@@ -83,12 +83,14 @@ public class CompareProducts extends BaseTest {
 //              3. Получите лист для текущих продуктов и сравните что его размер меньше листа из первого пункта
 
     @Test
-    public void test3(){
+    public void test3() throws InterruptedException {
         CatalogPage catalogPage = new CatalogPage();
         catalogPage.openUrl();
+        Thread.sleep(5000);
 
         List<String> allProductsList = catalogPage.listOfProducts.stream().map(x->x.getText()).toList();
         catalogPage.clickSizeBtn();
+        Thread.sleep(5000);
         List<String> xsProducts = catalogPage.xsList.stream().map(x->x.getText()).toList();
 
         if (xsProducts.size() < allProductsList.size()) {

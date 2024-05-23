@@ -1,0 +1,5 @@
+2024-05-17 20:59:09,582 DEBUG c.i.u.DriverFactory [main] Browser is chrome
+2024-05-17 20:59:19,795 DEBUG c.i.CompareProducts [main] debug
+2024-05-17 20:59:19,796 INFO c.i.CompareProducts [main] info
+2024-05-17 20:59:19,796 WARN c.i.CompareProducts [main] warning
+2024-05-17 20:59:19,796 ERROR c.i.CompareProducts [main] error
