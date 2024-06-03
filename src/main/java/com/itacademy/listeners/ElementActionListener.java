@@ -28,5 +28,7 @@ public class ElementActionListener implements WebDriverListener {
     @Override
     public void afterFindElements(WebElement element, By locator, List<WebElement> result) {
         System.out.println("There was a Finding element method");
+
+        //Allure.step("");    - возможно прикрутить Аллюр
     }
 }
